@@ -13,28 +13,13 @@ def Denoising(file_number):
     # # 坐标名称的字体设置
     # font = {'family': 'Times New Roman',
     #          'weight': 'normal',
-    #          'size': 20,
+    #          'size': 15,
     #          }
     # plt.figure(figsize=(20, 4))
-    # plt.plot(signal[0:1500],'r')
-    # #对图像的边框进行修改
-    # ax = plt.axes()
-    # ax.spines['top'].set_visible(False)
-    # ax.spines['right'].set_visible(False)
-    # plt.tick_params(labelsize=15)
-    # plt.xlabel("Length",font)
-    # plt.ylabel("Voltage/mV",font)
-    # # 设置坐标的显示范围
-    # plt.axis([0, 1500, -0.8, 1.2])
-    # # 设置刻度间隔
-    # # x的刻度间隔
-    # x_major_locator = MultipleLocator(300)
-    # # y的刻度间隔
-    # y_major_locator = MultipleLocator(0.2)
-    # ax = plt.gca()
-    # ax.xaxis.set_major_locator(x_major_locator)
-    # ax.yaxis.set_major_locator(y_major_locator)
-    # plt.legend(['no denoising'],fontsize=20)
+    # plt.plot(signal[0:450],'c')
+    # plt.xticks([])
+    # plt.yticks([])
+    # plt.axis([0, 450, -0.8, 1.2])
     # plt.show()
 
     coeffs = pywt.wavedec(data=signal, wavelet='db6', level=9)
@@ -51,24 +36,10 @@ def Denoising(file_number):
     rdata = pywt.waverec(coeffs=coeffs, wavelet='db6')
 
     # plt.figure(figsize=(20, 4))
-    # plt.plot(rdata[0:1500],'r')
-    # ax = plt.axes()
-    # ax.spines['top'].set_visible(False)
-    # ax.spines['right'].set_visible(False)
-    # plt.tick_params(labelsize=15)
-    # plt.xlabel("Length",font)
-    # plt.ylabel("Voltage/mV",font)
-    # # 设置坐标的显示范围
-    # plt.axis([0, 1500, -0.8, 1.2])
-    # # 设置刻度间隔
-    # # x的刻度间隔
-    # x_major_locator = MultipleLocator(300)
-    # # y的刻度间隔
-    # y_major_locator = MultipleLocator(0.2)
-    # ax = plt.gca()
-    # ax.xaxis.set_major_locator(x_major_locator)
-    # ax.yaxis.set_major_locator(y_major_locator)
-    # plt.legend(['denoising'],fontsize=20)
+    # plt.plot(rdata[0:450], 'm')
+    # plt.xticks([])
+    # plt.yticks([])
+    # plt.axis([0, 450, -0.8, 1.2])
     # plt.show()
 
     return rdata
@@ -151,7 +122,7 @@ if __name__=='__main__':
             plt.xlabel("Length")
             plt.ylabel("Voltage/mV")
             plt.axis([-5, 256, -5, 8])
-            plt.plot(data)
+            plt.plot(data,'r')
             plt.show()
 
     #横向堆叠

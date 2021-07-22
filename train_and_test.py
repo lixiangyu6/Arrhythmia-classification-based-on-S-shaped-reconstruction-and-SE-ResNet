@@ -125,7 +125,7 @@ def PCA_show(features,labels):
     plt.scatter(V_x, V_y, c='b', marker='x')
     plt.scatter(F_x, F_y, c='k', marker='x')
     plt.scatter(Q_x, Q_y, c='y', marker='x')
-    plt.legend(['N', 'S', 'V', 'F', 'Q'],fontsize=20)
+    plt.legend(['N', 'S', 'V', 'F', 'Q'],fontsize=15)
     plt.grid()
     plt.show()
 
