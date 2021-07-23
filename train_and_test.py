@@ -201,9 +201,9 @@ def test():
 
     net.eval()
 
-    #PCA可视化
-    conv_out_list=[Model.LayerActivations(net.conv1,-1),Model.LayerActivations(net.layer1,-1),Model.LayerActivations(net.layer2,-1),
-              Model.LayerActivations(net.layer3,-1),Model.LayerActivations(net.layer4,-1),Model.LayerActivations(net.avg_pool2d,-1)]
+    # #PCA可视化
+    # conv_out_list=[Model.LayerActivations(net.conv1,-1),Model.LayerActivations(net.layer1,-1),Model.LayerActivations(net.layer2,-1),
+    #           Model.LayerActivations(net.layer3,-1),Model.LayerActivations(net.layer4,-1),Model.LayerActivations(net.avg_pool2d,-1)]
 
     y_true = []
     y_pred = []
@@ -220,8 +220,8 @@ def test():
                 y_true.append(label.item())
                 y_pred.append(predicted[i].item())
 
-            # PCA可视化
-            PCA_SHOW(conv_out_list,labels.cpu())
+            # # PCA可视化
+            # PCA_SHOW(conv_out_list,labels.cpu())
 
     print('测试集acc为：{0:.3f}%'.format(accuracy_score(y_true, y_pred) * 100))
 
