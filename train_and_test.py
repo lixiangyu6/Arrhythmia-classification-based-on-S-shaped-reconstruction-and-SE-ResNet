@@ -104,7 +104,7 @@ def PCA_show(features,labels):
 
     font = {'family': 'Times New Roman',
              'weight': 'normal',
-             'size': 20,
+             'size': 15,
              }
     # 设置刻度字体大小
     plt.tick_params(labelsize=15)
