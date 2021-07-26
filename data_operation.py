@@ -16,10 +16,10 @@ def Denoising(file_number):
     #          'size': 15,
     #          }
     # plt.figure(figsize=(20, 4))
-    # plt.plot(signal[0:450],'c')
+    # plt.plot(signal[0:1500],'c')
     # plt.xticks([])
     # plt.yticks([])
-    # plt.axis([0, 450, -0.8, 1.2])
+    # plt.axis([0, 1500, -1.5, 1.5])
     # plt.show()
 
     coeffs = pywt.wavedec(data=signal, wavelet='db6', level=9)
@@ -36,10 +36,10 @@ def Denoising(file_number):
     rdata = pywt.waverec(coeffs=coeffs, wavelet='db6')
 
     # plt.figure(figsize=(20, 4))
-    # plt.plot(rdata[0:450], 'm')
+    # plt.plot(rdata[0:1500], 'm')
     # plt.xticks([])
     # plt.yticks([])
-    # plt.axis([0, 450, -0.8, 1.2])
+    # plt.axis([0, 1500, -1.5, 1.5])
     # plt.show()
 
     return rdata
@@ -108,22 +108,22 @@ if __name__=='__main__':
     dataSet = np.array(dataSet).reshape(-1, 256)
     lableSet = np.array(labelSet).reshape(-1, 1)
 
-    #展示心拍片段
-    Heart_beat_display={'N':[], 'S':[],'V':[], 'F':[], 'Q':[]}
-    for i in range(len(dataSet)):
-        data=dataSet[i]
-        label=Classset[labelSet[i]]
-        if len(Heart_beat_display[label])==0:
-            Heart_beat_display[label].append(data)
-            print(label)
-            ax = plt.axes()
-            ax.spines['top'].set_visible(False)
-            ax.spines['right'].set_visible(False)
-            plt.xlabel("Length")
-            plt.ylabel("Voltage/mV")
-            plt.axis([-5, 256, -5, 8])
-            plt.plot(data,'r')
-            plt.show()
+    # #展示心拍片段
+    # Heart_beat_display={'N':[], 'S':[],'V':[], 'F':[], 'Q':[]}
+    # for i in range(len(dataSet)):
+    #     data=dataSet[i]
+    #     label=Classset[labelSet[i]]
+    #     if len(Heart_beat_display[label])==0:
+    #         Heart_beat_display[label].append(data)
+    #         print(label)
+    #         ax = plt.axes()
+    #         ax.spines['top'].set_visible(False)
+    #         ax.spines['right'].set_visible(False)
+    #         plt.xlabel("Length")
+    #         plt.ylabel("Voltage/mV")
+    #         plt.axis([-5, 256, -5, 8])
+    #         plt.plot(data,'r')
+    #         plt.show()
 
     #横向堆叠
     train_ds = np.hstack((dataSet, lableSet))
