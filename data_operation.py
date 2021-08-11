@@ -10,36 +10,54 @@ def Denoising(file_number):
     record = wfdb.rdrecord(os.path.join('./','MIT-Data','score-data',file_number), channel_names=['MLII'])
     signal = record.p_signal.flatten()
 
+    # print('去噪前')
     # # 坐标名称的字体设置
     # font = {'family': 'Times New Roman',
     #          'weight': 'normal',
     #          'size': 15,
     #          }
-    # plt.figure(figsize=(20, 4))
-    # plt.plot(signal[0:1500],'c')
-    # plt.xticks([])
-    # plt.yticks([])
+    # #设置刻度大小
+    # plt.tick_params(labelsize=15)
+    # plt.plot(signal[0:1500])
+    # ax = plt.axes()
+    # ax.spines['top'].set_visible(False)
+    # ax.spines['right'].set_visible(False)
+    # plt.xlabel("Length",font)
+    # plt.ylabel("U(mV)",font)
     # plt.axis([0, 1500, -1.5, 1.5])
+    # x_major_locator = MultipleLocator(300)
+    # y_major_locator = MultipleLocator(0.6)
+    # ax.xaxis.set_major_locator(x_major_locator)
+    # ax.yaxis.set_major_locator(y_major_locator)
     # plt.show()
 
     coeffs = pywt.wavedec(data=signal, wavelet='db6', level=9)
     cA9, cD9, cD8, cD7, cD6, cD5, cD4, cD3, cD2, cD1 = coeffs
     threshold = (np.median(np.abs(cD1)) / 0.6745) * (np.sqrt(2 * np.log(len(cD1))))
-    # 将高频信号cD1、cD2置零
+    # 将高频信号cD1、cD2、cD3置零
     cD1.fill(0)
     cD2.fill(0)
+    cD3.fill(0)
     #去基漂
     cA9.fill(0)
     # 将其他中低频信号按软阈值公式滤波
-    for i in range(1, len(coeffs) - 2):
+    for i in range(1, len(coeffs) - 3):
         coeffs[i] = pywt.threshold(coeffs[i], threshold)
     rdata = pywt.waverec(coeffs=coeffs, wavelet='db6')
 
-    # plt.figure(figsize=(20, 4))
-    # plt.plot(rdata[0:1500], 'm')
-    # plt.xticks([])
-    # plt.yticks([])
+    # print('去噪后')
+    # plt.tick_params(labelsize=15)
+    # plt.plot(rdata[0:1500])
+    # ax = plt.axes()
+    # ax.spines['top'].set_visible(False)
+    # ax.spines['right'].set_visible(False)
+    # plt.xlabel("Length",font)
+    # plt.ylabel("U(mV)",font)
     # plt.axis([0, 1500, -1.5, 1.5])
+    # x_major_locator = MultipleLocator(300)
+    # y_major_locator = MultipleLocator(0.6)
+    # ax.xaxis.set_major_locator(x_major_locator)
+    # ax.yaxis.set_major_locator(y_major_locator)
     # plt.show()
 
     return rdata

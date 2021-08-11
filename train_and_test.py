@@ -115,7 +115,6 @@ def PCA_show(features,labels):
     # 设置刻度间隔
     ax = plt.gca()
     # x的刻度间隔
-    plt.tick_params(labelsize=15)
     x_major_locator = MultipleLocator(20)
     y_major_locator = MultipleLocator(20)
     ax.xaxis.set_major_locator(x_major_locator)
@@ -125,7 +124,7 @@ def PCA_show(features,labels):
     plt.scatter(V_x, V_y, c='b', marker='x')
     plt.scatter(F_x, F_y, c='k', marker='x')
     plt.scatter(Q_x, Q_y, c='y', marker='x')
-    #plt.legend(['N', 'S', 'V', 'F', 'Q'],fontsize=15,loc='upper right')
+    #plt.legend(['N', 'S', 'V', 'F', 'Q'],fontsize=15,loc='upper right',ncol=5)
     plt.grid()
     plt.show()
 
@@ -201,7 +200,7 @@ def test():
 
     net.eval()
 
-    #PCA可视化
+    # #PCA可视化
     # conv_out_list=[Model.LayerActivations(net.conv1,-1),Model.LayerActivations(net.layer1,-1),Model.LayerActivations(net.layer2,-1),
     #           Model.LayerActivations(net.layer3,-1),Model.LayerActivations(net.layer4,-1),Model.LayerActivations(net.avg_pool2d,-1)]
 
@@ -220,7 +219,7 @@ def test():
                 y_true.append(label.item())
                 y_pred.append(predicted[i].item())
 
-            # PCA可视化
+            # #PCA可视化
             # PCA_SHOW(conv_out_list,labels.cpu())
 
     print('测试集acc为：{0:.3f}%'.format(accuracy_score(y_true, y_pred) * 100))
